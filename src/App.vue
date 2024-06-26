@@ -1,4 +1,5 @@
 <script>
+import dayjs from 'dayjs'
 import axios from "axios"
     axios.defaults.baseURL = "http://localhost:3000";
 // Компоненты
@@ -19,10 +20,10 @@ export default {
 		};
 	},
 	methods: {
-    getPrettyTime(time) {
-      let diff = dayjs(time).diff(dayjs(), "seconds");
-      duration = dayjs.duration(diff, "seconds").format("HH:mm:ss");
-      return duration;
+    async stop(){
+      let id = this.user.id;
+      let dat = await axios.post(`/bon`, {id})
+      this.user=dat.data
     },
     async delete1(id){
       
@@ -108,6 +109,12 @@ export default {
         this.errmoney = false
       } else { this.errmoney= true}
     },
+    async postvrem(){
+      let vrem = dayjs().add(1, 'day')
+      let id = this.user.id
+      let dat = await axios.post(`/vrema`, {vrem, id})
+      this.user.data1= dat.data
+    },
 	},
 	components: {
 		AppHeader,
@@ -130,6 +137,8 @@ export default {
 				:logan="logan" 
 				:log="log" 
 				:par="par" 
+        @stop="stop"
+        @postvrem="postvrem"
         @exit="exit"
 				@login1="login1" 
 				@click1="click1"  

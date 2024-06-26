@@ -13,7 +13,9 @@ export default {
             
             money:'Недостаточно средств для покупки',
             dy1: true,
-            bondy1: false
+            bondy1: false,
+            dat:"",
+            ada: false
         }
     },
     props:{
@@ -34,15 +36,36 @@ export default {
         this.bondy1=true
       },
       getPrettyTime(time) {
+        
       let diff = dayjs(time).diff(dayjs(), "seconds");
-      duration = dayjs.duration(diff, "seconds").format("HH:mm:ss");
+      let duration = dayjs.duration(diff, "seconds").format("HH:mm:ss");
       return duration;
     },
+    vren(){
+      if(this.user.rest!=0 && this.user.dycoin>=10000000){
+        this.$emit('postvrem');
+        this.ada=false
+      }
+      
+    }
+    
       //рест
     
     
     },
     mounted() {
+      
+      setInterval(()=> {if(this.ada==false){
+        let diff = dayjs(this.user.data1).diff(dayjs(), "seconds");
+        if (diff>0){
+        this.dat= this.getPrettyTime(this.user.data1)}
+        else{
+          this.$emit('stop')
+          this.ada=true
+        }
+      }
+        
+      }, 1000)
       if(this.logan==false){
     this.$router.push({name: "login"})
    }
@@ -57,7 +80,7 @@ export default {
     <nav> <h6 style="margin-top: 10px;"><button style="background-color: #D037F6; color: #161D27;" @click="dy()">Dy магазин</button> / <button style="background-color: #D037F6; color: #161D27;" @click="bondy()" >BonDy магазин</button></h6></nav>
   </header>
   <main>
-    <h1> vrema{{ getPrettyTime() }}</h1>
+    <h1 v-if="user.data1!=''"> vrema {{ dat}}</h1>
   <section v-if="dy1">
     <h1>магазин для кликера Dycoin</h1>
     <h2>у вас {{ user.dycoin }} Dy coin</h2>
@@ -84,8 +107,7 @@ export default {
       <h5 v-if="user.rest==0">чтобы получать BonDyCoin сделайте хотябы 1 рест</h5>
       <div v-if="user.rest==0"><h5 >1 рест = 1 BonDyCoin / за раз вы получаете {{ user.rest }} BonDy coin</h5> 
       <br>
-      <h3> отправить 10 000 000 Dy coin на изготовление {{ user.rest }} BonDy coin <br> <button class="btn">отправить</button>
-      <p><em style="color: brown;">Кнопка пока не работает</em></p></h3>
+      <h3> отправить 10 000 000 Dy coin на изготовление {{ user.rest }} BonDy coin <br> <button class="btn" @click="vren()">отправить</button></h3>
       <br></div>
       
       <h5>у вас {{ user.rest }} рестов</h5>
