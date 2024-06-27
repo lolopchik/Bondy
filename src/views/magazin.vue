@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 
 
 import axios from "axios"
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://serverbondy.onrender.com";
 
 export default {
     data(){
