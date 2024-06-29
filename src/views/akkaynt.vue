@@ -52,9 +52,25 @@ import axios from "axios"
 <h5>
     <button class="btn" @click="$emit('delete1', user)" style="background-color: red; margin-top: 30px;">удалить аккаунт</button>
 </h5>
+    <section style="text-align: center; margin-top: 20px;">
+        
+        <a href="https://t.me/+JpplelR4uTNhZDhi" target="_blank"><img class="socicon tg" src="../assets/telegram.png" /></a>
+    </section>
 </template>
 
 
 <style>
-
+.socicon {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+.tg:hover {
+  background-color: #0088cc;
+}
 </style>
