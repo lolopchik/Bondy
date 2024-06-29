@@ -41,7 +41,6 @@ import axios from "axios"
       </div>
       <div class="modal-body">
         Будет добавлена реферальная ссылка, переводы и игры
-        и будет починина кнопка для переплавки BonDycoin
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">закрыть</button>

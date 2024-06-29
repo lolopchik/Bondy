@@ -1,6 +1,6 @@
 <script >
     import axios from "axios"
-    axios.defaults.baseURL = "https://serverbondy.onrender.com";
+    axios.defaults.baseURL = "http://localhost:3000";
 
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
 
 <template>
   <h1 >у вас {{user.dycoin}} Dy coin</h1>
-  <div class="dy" @click="$emit('click1', user)"><img src="../assets/dycoin.png" ></div>
+  <div class="dy" @click="$emit('click1')"><img src="../assets/dycoin.png" ></div>
   
 </template>
 

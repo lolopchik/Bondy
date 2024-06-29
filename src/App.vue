@@ -10,7 +10,7 @@ import { RouterView } from 'vue-router'
 export default {
 	data(){
 		return {
-			
+			sar: 0,
 			logan: false,
 			user:{},
 			log:false,
@@ -51,11 +51,19 @@ export default {
                 }
             },
 		// клик
-		async click1(id){
+		async click1(){
+      
       this.errmoney1 = false;
       this.errmoney = false;
-        let respon = await axios.put('/click', id);
-        this.user = respon.data;  
+      this.user.dycoin= this.user.dycoin + (1 +this.user.bust1+ this.user.bust2*5 + this.user.bust3*20 + this.user.bust4*100 + this.user.bust5*500 + this.user.bust6* 2500);
+      this.sar++
+      if(this.sar>=10){
+        let id = this.user.id
+        let dy = this.user.dycoin
+        let respon = await axios.put('/click', {id, dy});
+        this.user = respon.data; 
+        this.sar=0
+      } 
     },
 	// рест
 	async rest(id){

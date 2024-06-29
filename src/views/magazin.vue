@@ -15,7 +15,7 @@ export default {
             dy1: true,
             bondy1: false,
             dat:"",
-            ada: false
+            ada: true
         }
     },
     props:{
